@@ -1,0 +1,21 @@
+angular.module("Samples").config(["$stateProvider","$urlRouterProvider",function($stateProvider,$urlRouterProvider){
+	$stateProvider.state("draganddrop",{
+		url:"/draganddrop",
+		views:{
+			"main":{
+				templateUrl:"pages/draganddrop.html",
+				controller:"draganddropController"
+			}
+		}
+	});
+	$stateProvider.state("dynamicForm",{
+		url:"/dynamicForm",
+		views:{
+			"main":{
+				templateUrl:"pages/dynamicForm.html",
+				controller:"dynamicFormController"
+			}
+		}
+	});
+	$urlRouterProvider.otherwise("/draganddrop");
+}])

@@ -1,0 +1,64 @@
+<script type="text/ng-template" id="item_renderer.html">
+
+<select id="class" required kendo-combo-box
+k-ng-model="data.objectData"
+ng-model="data.objectData.internalName"
+k-placeholder="'Select Class'"
+k-auto-bind="true"
+k-data-source="data.classDataSource"
+k-filter="'contains'"
+k-data-text-field="'name'"
+k-data-value-field="'internalName'"
+k-on-change="onClassChange(kendoEvent,data,parent)"
+ng-disabled="data.attributes.length!=0||data.childObjects.length!=0"></select>
+
+<kendo-button class="k-primary" ng-disabled="!data.objectData" 
+ng-click="onAddItem(data,parent)" style="height:35px;width:100px;">+Children</kendo-button>
+<kendo-button class="k-primary" ng-disabled="!data.objectData" 
+ng-click="onAddAttribute(data,parent)" style="height:35px;width:100px;cursor:pointer;">+Attribute</kendo-button>
+<img src="images/remove_button.png" ng-show="onShowDeleteBtn(parent)" ng-click="onDeleteChild(data,parent)" height='25 width='25' style="margin:5px;cursor:pointer;"/>
+
+<ul ng-repeat="attribute in data.attributes">
+	<li class="advsearch_list_attr">
+
+		<select required kendo-combo-box
+		k-placeholder="'Select attribute'"
+		k-ng-model="attribute.attribute"
+		ng-model="attribute.attribute.internalName"
+		k-auto-bind="true"
+		k-filter="'contains'"
+		k-data-text-field="'name'"
+		k-data-value-field="'internalName'"
+		k-data-source="attribute.attributeDataSource"></select>
+
+		<select required kendo-combo-box
+		k-placeholder="'Select condition'"
+		k-ng-model="attribute.conditionData"
+		ng-model="attribute.conditionData.value"
+		k-auto-bind="true"
+		k-filter="'contains'"
+		k-data-text-field="'condition'"
+		k-data-value-field="'value'"
+		k-data-source="attribute.conditionDataSource"
+		ng-disabled="!attribute.attribute"></select>
+
+		<input ng-show="onShowInput(attribute)"
+		ng-model="attribute.attr_value_text" name="textfield_{{$index}}"
+		style="height:25px;width:250px;border:1px solid #2EB3A6;border-radius:5px;padding-left:10px;text-decoration:none;"></input>
+
+		<img src='images/remove_button.png' ng-click='onDeleteAttribute(data,$index)' height='25' width='25'
+		style='margin:5px;cursor:pointer;'/>
+	</li>
+</ul>
+
+<ul>
+	<li class="advsearch_list" ng-init="parent=$parent.data" ng-repeat="data in data.childObjects"
+	ng-include="'item_renderer.html'"></li>
+</ul>
+</script>
+
+<form name="advancedSearchForm" kendo-validator="validator" k-options="validatorOptions" novalidate>
+<ul style="list-style:none;" class="advsearch_ul">
+	<li ng-repeat="data in tree" ng-include="'item_renderer.html'"></li>
+</ul>
+</form>

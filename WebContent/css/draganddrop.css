@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+
+html,body{
+	height:100%;
+	min-height:100%;
+	margin:0;
+	padding:0;
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  top:0;
+  bottom:0;
+  right:0;
+  left:0;
+  position:absolute;
+}
+
+#splitter{
+	height:100%;
+}
+
+.advsearch_ul .k-widget.k-invalid-msg{
+	display:none!important;
+}
+
+li.advsearch_list{
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-left:30px;
+	list-style:none;
+	background-image:none;
+	background-repeat:none;
+}
+
+li.advsearch_list_attr{
+	margin-top:20px;
+	margin-bottom:20px;
+	margin-left:70px;
+	list-style:none;
+	background-image:none;
+	background-repeat:none;
+}
+
+ul.advsearch_ul{
+	margin-top:20px!important;
+	margin-bottom:20px;
+	margin-left:30px;
+	list-style:none;
+	background-image:none;
+	background-repeat:none;
+}
